@@ -1,0 +1,19 @@
+{
+  "name": "nba-project",
+  "version": "1.0.0",
+  "description": "A Web Application about NBA Players, using a NBA API.",
+  "main": "\u001b[D\u001b[D\u001b[D\u001b[Dserver.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "static",
+    "API"
+  ],
+  "author": "Matthew Tung",
+  "license": "CC-BY-SA-4.0"
+}

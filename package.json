@@ -2,7 +2,7 @@
   "name": "nba-project",
   "version": "1.0.0",
   "description": "A Web Application about NBA Players, using a NBA API.",
-  "main": "\u001b[D\u001b[D\u001b[D\u001b[Dserver.js)",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -15,5 +15,14 @@
     "API"
   ],
   "author": "Matthew Tung",
-  "license": "CC-BY-SA-4.0"
+  "license": "CC-BY-SA-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Matt-Tung88/nba-app"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2"
+  }
 }

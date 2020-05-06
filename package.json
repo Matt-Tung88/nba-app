@@ -18,11 +18,20 @@
   "license": "CC-BY-SA-4.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Matt-Tung88/nba-app"
+    "url": "git+https://github.com/Matt-Tung88/nba-app.git"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "latest-version": "^5.1.0",
     "node-fetch": "^2.6.0",
-    "request": "^2.88.2"
-  }
+    "request": "^2.88.2",
+    "webpack": "^4.43.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Matt-Tung88/nba-app/issues"
+  },
+  "homepage": "https://github.com/Matt-Tung88/nba-app#readme",
+  "devDependencies": {}
 }

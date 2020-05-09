@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: auto;
     background-color: rgb(25, 25, 31);
+    /* overflow: hidden; */
 }
 input {
     border: solid;
@@ -29,4 +30,13 @@ div {
     box-sizing: content-box;
     
 
+}
+
+ul {
+    height: 190%;
+    width: 50%;
+}
+
+li {
+    color: white;
 }

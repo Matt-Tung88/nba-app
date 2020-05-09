@@ -1,4 +1,5 @@
-var playersList = [];
+// const playersList = [];
+
 // let search = document.getElementById("search");
 // search.addEventListener("keyup", (n) => {
 //     const searchString = n.target.value.toLowerCase();
@@ -12,8 +13,10 @@ var playersList = [];
 //     // displayPlayer(filteredPlayers);
 // });
 
+window.onload = loadPlayers;
 
 function loadPlayers() {
+    const playersList = [];
 
     fetch('https://www.balldontlie.io/api/v1/players')
         .then((res) => {
@@ -21,37 +24,49 @@ function loadPlayers() {
         })
         .then((data) => {
             for(var i = 0; i < data.data.length; i++){
-                var name = data.data[i].first_name + " " + data.data[i].last_name;
+                // playersList[i] = data.data[i].first_name + " " + data.data[i].last_name;
                 // console.log(data.data[i].first_name);
-              
-
-                console.log(playersList.push(name));
-                console.log(typeof(name))
-                // console.log(typeof(playersList))
+                var name = data.data[i].first_name + " " + data.data[i].last_name;  
+                // + " - " + data.data[i].team.abbreviation;
+                playersList.push(name);
+                // console.log(name)
             }
             // console.log(playersList);
             // console.log(data.data[1].first_name);
-            return data;
 
+            return createList(playersList);
         })
-
 }
 
 
-loadPlayers();
-
-console.log(playersList);
 
 
-// function createList(players) {
-//     var ul = document.createElement("ul");
-//     var li = document.createElement("li");
-//     for(var i = 0; i < players.length; i++) {
+function createList(players) {
+    var ul = document.createElement("ul");
 
-//         li.appendChild(document.createTextNode(players[i]));
-//         ul.appendChild(li);
-//     }
-//     console.log(ul);
-// }
+    for(var i = 0; i < players.length; i++) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(players[i]));
+        ul.appendChild(li);
+    }
+    // document.querySelector("#search").append(ul);
+    document.querySelector("#lol").append(ul);
 
-// createList(playersList);
+}
+
+function filterPlayers() {
+    var input, filter, li, txtValue;
+    input = document.getElementById("search");
+    filter = input.value.toUpperCase();
+    li = document.getElementsByTagName("li");
+
+    for(var i=0; i < li.length; i++) {
+        txtValue = li[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+
+    }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Stats</title>
+    <link rel="stylesheet" href="/stats.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <div>
+            <h2>'19 - '20 SEASON AVERAGES</h2>
+        </div>
+
+        <div id="player">
+            <h3><%= fn %> <%= ln %></h3>
+            <h5> Position: <%= position %> | Team: <%= team %></h5>
+        </div>
+
+        <div>
+            <table id="table" >
+                <tr>
+                    <th>GP</th>
+                    <th>MIN</th>
+                    <th>FGM</th>
+                    <th>FGA</th>
+                    <th>FG_PCT</th>
+                    <th>FG3M</th>
+                    <th>FG3A</th>
+                    <th>FG3_PCT</th>
+                    <th>FTM</th>
+                    <th>FTA</th>
+                    <th>FT_PCT</th>
+                    <th>OREB</th>
+                    <th>DREB</th>
+                    <th>REB</th>
+                    <th>AST</th>
+                    <th>STL</th>
+                    <th>BLK</th>
+                    <th>TO</th>
+                    <th>PF</th>
+                    <th>PTS</th>
+                </tr>
+                <tr>
+                    <td><%= games_played  %></td>
+                    <td><%= min %></td>
+                    <td><%= fgm %></td>
+                    <td><%= fga %></td>
+                    <td><%= fg_pct %></td>
+                    <td><%= fg3m %></td>
+                    <td><%= fg3a %></td>
+                    <td><%= fg3_pct %></td>
+                    <td><%= ftm %></td>
+                    <td><%= fta  %></td>
+                    <td><%= ft_pct %></td>
+                    <td><%= oreb  %></td>
+                    <td><%= dreb %></td>
+                    <td><%= reb  %></td>
+                    <td><%= ast %></td>
+                    <td><%= stl %></td>
+                    <td><%= blk %></td>
+                    <td><%= turnover %></td>
+                    <td><%= pf %></td>
+                    <td><%= pts %></td>
+                    
+
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <hr>
+
+
+    <div id="next">
+        <div id="header">
+        <h2>LAST TEN</h2>
+
+        </div>
+        
+        <div id="button">
+            <button>ga</button>
+        </div>
+
+    </div>
+
+    <canvas id="myChart" width="400" height="400"></canvas>
+
+  
+
+
+
+
+    <script src="/Chart.js-2.9.3" >
+
+        var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+    </script>
+</body>
+</html>

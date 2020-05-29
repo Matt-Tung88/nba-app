@@ -1,18 +1,42 @@
+
 html, body {
-    height: 100%;
-    margin: auto;
+    height: 100vh;
+    /* width: 100vh; */
+    /* min-height: 100%; 
+    width: 100%;
+    margin: 0 auto;  */
+
     background-color: rgb(25, 25, 31);
-    /* overflow: hidden; */
+
+    overflow-y: hidden;
+
 }
+
+
+
+#container {
+    margin: 45vh;   
+}
+
+#s {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
 input {
+    
     border: solid;
-    border-radius: 25px;
-    width: 50%;
+    /* border-radius: 25px; */
+    width: 100%;
     padding: 15px;
     background-color: rgb(25, 25, 31);
     outline: none;
     border-color: rgb(84, 79, 102);
     color: rgb(211, 209, 222);
+    /* margin: 0; */
+    
+
 }
 
 input:hover{
@@ -22,21 +46,32 @@ input:focus {
     border-color: rgb(128, 122, 145);
 }
 
-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    box-sizing: content-box;
-    
 
+
+#results {
+    margin: auto;
+    width: 100%;
 }
 
 ul {
-    height: 190%;
-    width: 50%;
+    max-height: 30vh;
+    box-sizing: border-box;
+    overflow: auto;
+    /* overflow: scroll; */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-li {
-    color: white;
+li a{
+    color: rgb(211, 209, 222);;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    background-color: rgb(61, 61, 74);
+  }
+    
+
+a:hover {
+    background-color:  rgb(100, 100, 117); 
 }

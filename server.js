@@ -8,12 +8,12 @@ const port = process.env.PORT || 3000;
 
 // app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static('public'));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
 
-app.get('/:name', (req, res) => {
+app.get('/:name', async (req, res) => {
 
         var name = req.params.name;
         var stats = [];
@@ -21,7 +21,7 @@ app.get('/:name', (req, res) => {
         for(var i=0; i < 3; i++) {
             if(i === 0) {
                 // console.log("----------------------------------")
-                fetch(`https://www.balldontlie.io/api/v1/players/${name}`)
+                await fetch(`https://www.balldontlie.io/api/v1/players/${name}`)
                     .then((res) => {
                         return res.json();
                     })
@@ -80,27 +80,27 @@ app.get('/:name', (req, res) => {
                         return res.json();
                     })
                     .then((data) => {
-                        console.log(data.data.length)
+                        // console.log(data.data.length)
                         for(var i = data.data.length - 10; i < data.data.length; i++) {
                             stats.push(
-                                data.data[i].ast
-                                // data.data[i].blk,
-                                // data.data[i].dreb,
-                                // data.data[i].fg3_pct,
-                                // data.data[i].fg3a,
-                                // data.data[i].fg3m,
-                                // data.data[i].fg_pct,
-                                // data.data[i].fga,
-                                // data.data[i].fgm,
-                                // data.data[i].ft_pct,
-                                // data.data[i].fta,
-                                // data.data[i].ftm,
-                                // data.data[i].oreb,
-                                // data.data[i].pf,
-                                // data.data[i].pts,
-                                // data.data[i].reb,
-                                // data.data[i].stl,
-                                // data.data[i].turnover,
+                                data.data[i].ast,
+                                data.data[i].blk,
+                                data.data[i].dreb,
+                                data.data[i].fg3_pct,
+                                data.data[i].fg3a,
+                                data.data[i].fg3m,
+                                data.data[i].fg_pct,
+                                data.data[i].fga,
+                                data.data[i].fgm,
+                                data.data[i].ft_pct,
+                                data.data[i].fta,
+                                data.data[i].ftm,
+                                data.data[i].oreb,
+                                data.data[i].pf,
+                                data.data[i].pts,
+                                data.data[i].reb,
+                                data.data[i].stl,
+                                data.data[i].turnover
 
                                                         )
 
@@ -134,19 +134,200 @@ app.get('/:name', (req, res) => {
                                     fg_pct: stats[21],
                                     fg3_pct:stats[22],
                                     ft_pct: stats[23],
+                            
                                     a1: stats[24],
-                                    a2: stats[25],
-                                    a3: stats[26],
-                                    a4: stats[27],
-                                    a5: stats[28],
-                                    a6: stats[29],
-                                    a7: stats[30],
-                                    a8: stats[31],
-                                    a9: stats[32],
-                                    a10: stats[33]
+                                    b1: stats[25],
+                                    dreb1: stats[26],
+                                    fg3_pct1: stats[27],
+                                    fg3a1: stats[28],
+                                    fg3m1: stats[29],
+                                    fg_pct1: stats[30],
+                                    fga1: stats[31], 
+                                    fgm1: stats[32],
+                                    ft_pct1: stats[33],
+                                    fta1: stats[34],
+                                    ftm1: stats[35],
+                                    oreb1: stats[36],
+                                    pf1: stats[37],
+                                    pts1: stats[38],
+                                    reb1: stats[39],
+                                    stl1: stats[40],
+                                    turnover1: stats[41],
+
+                                    a2: stats[42],
+                                    b2: stats[43],
+                                    dreb2: stats[44],
+                                    fg3_pct2: stats[45],
+                                    fg3a2: stats[46],
+                                    fg3m2: stats[47],
+                                    fg_pct2: stats[48],
+                                    fga2: stats[49],
+                                    fgm2: stats[50],
+                                    ft_pct2: stats[51],
+                                    fta2: stats[52],
+                                    ftm2: stats[53],
+                                    oreb2: stats[54],
+                                    pf2: stats[55],
+                                    pts2: stats[56],
+                                    reb2: stats[57],
+                                    stl2: stats[58],
+                                    turnover2: stats[59],
+
+                                    a3: stats[60],
+                                    b3: stats[61],
+                                    dreb3: stats[62],
+                                    fg3_pct3: stats[63],
+                                    fg3a3: stats[64],
+                                    fg3m3: stats[65],
+                                    fg_pct3: stats[66],
+                                    fga3: stats[67],
+                                    fgm3: stats[68],
+                                    ft_pct3: stats[69],
+                                    fta3: stats[70],
+                                    ftm3: stats[71],
+                                    oreb3: stats[72],
+                                    pf3: stats[73],
+                                    pts3: stats[74],
+                                    reb3: stats[75],
+                                    stl3: stats[76],
+                                    turnover3: stats[77],
+
+                                    a4: stats[78],
+                                    b4: stats[79],
+                                    dreb4: stats[80],
+                                    fg3_pct4: stats[81],
+                                    fg3a4: stats[82],
+                                    fg3m4: stats[83],
+                                    fg_pct4: stats[84],
+                                    fga4: stats[85],
+                                    fgm4: stats[86],
+                                    ft_pct4: stats[87],
+                                    fta4: stats[88],
+                                    ftm4: stats[89],
+                                    oreb4: stats[90],
+                                    pf4: stats[91],
+                                    pts4: stats[92],
+                                    reb4: stats[93],
+                                    stl4: stats[94],
+                                    turnover4: stats[95],
+
+                                    a5: stats[96],
+                                    b5: stats[97],
+                                    dreb5: stats[98],
+                                    fg3_pct5: stats[99],
+                                    fg3a5: stats[100],
+                                    fg3m5: stats[101],
+                                    fg_pct5: stats[102],
+                                    fga5: stats[103],
+                                    fgm5: stats[104],
+                                    ft_pct5: stats[105],
+                                    fta5: stats[106],
+                                    ftm5: stats[107],
+                                    oreb5: stats[108],
+                                    pf5: stats[109],
+                                    pts5: stats[110],
+                                    reb5: stats[111],
+                                    stl5: stats[112],
+                                    turnover5: stats[113],
+
+                                    a6: stats[114],
+                                    b6: stats[115],
+                                    dreb6: stats[116],
+                                    fg3_pct6: stats[117],
+                                    fg3a6: stats[118],
+                                    fg3m6: stats[119],
+                                    fg_pct6: stats[120],
+                                    fga6: stats[121],
+                                    fgm6: stats[122],
+                                    ft_pct6: stats[123],
+                                    fta6: stats[124],
+                                    ftm6: stats[125],
+                                    oreb6: stats[126],
+                                    pf6: stats[127],
+                                    pts6: stats[128],
+                                    reb6: stats[129],
+                                    stl6: stats[130],
+                                    turnover6: stats[131],
+
+                                    a7: stats[132],
+                                    b7: stats[133],
+                                    dreb7: stats[134],
+                                    fg3_pct7: stats[135],
+                                    fg3a7: stats[136],
+                                    fg3m7: stats[137],
+                                    fg_pct7: stats[138],
+                                    fga7: stats[139],
+                                    fgm7: stats[140],
+                                    ft_pct7: stats[141],
+                                    fta7: stats[142],
+                                    ftm7: stats[143],
+                                    oreb7: stats[144],
+                                    pf7: stats[145],
+                                    pts7: stats[146],
+                                    reb7: stats[147],
+                                    stl7: stats[148],
+                                    turnover7: stats[149],
+
+                                    a8: stats[150],
+                                    b8: stats[151],
+                                    dreb8: stats[152],
+                                    fg3_pct8: stats[153],
+                                    fg3a8: stats[154],
+                                    fg3m8: stats[155],
+                                    fg_pct8: stats[156],
+                                    fga8: stats[157],
+                                    fgm8: stats[158],
+                                    ft_pct8: stats[159],
+                                    fta8: stats[160],
+                                    ftm8: stats[161],
+                                    oreb8: stats[162],
+                                    pf8: stats[163],
+                                    pts8: stats[164],
+                                    reb8: stats[165],
+                                    stl8: stats[166],
+                                    turnover8: stats[167], 
+
+                                    a9: stats[168],
+                                    b9: stats[169],
+                                    dreb9: stats[170],
+                                    fg3_pct9: stats[171],
+                                    fg3a9: stats[172],
+                                    fg3m9: stats[173],
+                                    fg_pct9: stats[174],
+                                    fga9: stats[175],
+                                    fgm9: stats[176],
+                                    ft_pct9: stats[177],
+                                    fta9: stats[178],
+                                    ftm9: stats[179],
+                                    oreb9: stats[180],
+                                    pf9: stats[181],
+                                    pts9: stats[182],
+                                    reb9: stats[183],
+                                    stl9: stats[184],
+                                    turnover9: stats[185], 
+
+                                    a10: stats[186],
+                                    b10: stats[187],
+                                    dreb10: stats[188],
+                                    fg3_pct10: stats[189],
+                                    fg3a10: stats[190],
+                                    fg3m10: stats[191],
+                                    fg_pct10: stats[192],
+                                    fga10: stats[193],
+                                    fgm10: stats[194],
+                                    ft_pct10: stats[195],
+                                    fta10: stats[196],
+                                    ftm10: stats[197],
+                                    oreb10: stats[198],
+                                    pf10: stats[199],
+                                    pts10: stats[200],
+                                    reb10: stats[201],
+                                    stl10: stats[202],
+                                    turnover10: stats[203]
 
 
                                 }
+                                
 
                         }
 
@@ -170,11 +351,11 @@ app.get('/:name', (req, res) => {
 
 });
         
-function lol(stats) {
-    for(var i=24; i < stats.length;i++) {
-        console.log(stats[i]);
-    }
-}
+// function lol(stats) {
+//     for(var i=24; i < stats.length;i++) {
+//         console.log(stats[i]);
+//     }
+// }
 
 
 app.listen(port, () => console.log(`Your app is running on https://nba-project-mt.herokuapp.com/ and port: ${port}!`));

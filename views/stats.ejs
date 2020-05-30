@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Individual Stats</title>
     <link rel="stylesheet" href="/stats.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 </head>
+
 <body>
 
     <div id="container">
@@ -20,7 +26,7 @@
         </div>
 
         <div>
-            <table id="table" >
+            <table id="table">
                 <tr>
                     <th>GP</th>
                     <th>MIN</th>
@@ -64,7 +70,7 @@
                     <td><%= turnover %></td>
                     <td><%= pf %></td>
                     <td><%= pts %></td>
-                    
+
 
                 </tr>
             </table>
@@ -74,66 +80,1322 @@
 
     <hr>
 
-
     <div id="next">
         <div id="header">
-        <h2>LAST TEN</h2>
+            <h2>LAST TEN</h2>
 
         </div>
-        
-        <div id="button">
-            <button>ga</button>
+
+        <div class="dropdown">
+            <button id="button" onclick="myFunction()" class="dropbtn">PTS</button>
+            <div id="myDropdown" class="dropdown-content">
+                <li onclick="fgm()">FGM</li>
+                <li onclick="fga()">FGA</li>
+                <li onclick="fg_pct()">FG_PCT</li>
+                <li onclick="fg3m()">FG3M</li>
+                <li onclick="fg3a()">FG3A</li>
+                <li onclick="fg3_pct()">FG3_PCT</li>
+                <li onclick="ftm()">FTM</li>
+                <li onclick="fga()">FTA</li>
+                <li onclick="ft_pct()">FT_PCT</li>
+                <li onclick="of_reb()">OREB</li>
+                <li onclick="def_reb()">DREB</li>
+                <li onclick="reb()">REB</li>
+                <li onclick="ast()">AST</li>
+                <li onclick=stl()>STL</li>
+                <li onclick="blk()">BLK</li>
+                <li onclick="turnover()">TO</li>
+                <li onclick="pf()">PF</li>
+                <li onclick="pts()">PTS</li>
+            </div>
+
         </div>
 
     </div>
 
-    <canvas id="myChart" width="400" height="400"></canvas>
-
-  
-
-
+    <div id="chart" style="width:600px; height:400px; margin: 0 auto">
+        <canvas id="myChart"></canvas>
+    </div>
 
 
-    <script src="/Chart.js-2.9.3" >
 
+
+
+
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        var data = [<%= pts1 %>, <%= pts2 %>,<%= pts3 %>,<%= pts4 %>,<%= pts5 %>,<%= pts6 %>,<%= pts7 %>,<%= pts8 %>,<%= pts9 %>,<%= pts10 %>]
+        console.log(data)
+        console.log(Math.max(...data))
+        var name = "<%- fn %>" + " " + "<%- ln %>";
         var ctx = document.getElementById('myChart');
-            var myChart = new Chart(ctx, {
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['', '', '', '', '', '', '', '', '', ''],
+                datasets: [{
+                    fill: false,
+                    label: name,
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: data
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 2,
+                        usePointStyle: true
+
+                    },
+                    onClick: function (e) {
+                        e.stopPropagation();
+                    }
+                },
+
+                scales: {
+                    xAxes: [{
+
+                        ticks: {
+
+                            beginAtZero: true,
+
+                        },
+                        gridLines: {
+                            // display: false,
+                            drawOnChartArea: false,
+
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            // max: Math.max(...data),
+                            // stepSize: 1                     
+
+                        },
+                        gridLines: {
+                            // display: false,
+                            // zeroLineColor: "white",
+                            drawOnChartArea: false,
+
+                        }
+                    }]
+                }
+            }
+        });
+
+        function pts() {
+            var data = [<%= pts1 %>, <%= pts2 %>,<%= pts3 %>,<%= pts4 %>,<%= pts5 %>,<%= pts6 %>,<%= pts7 %>,<%= pts8 %>,<%= pts9 %>,<%= pts10 %>]
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
                     }]
                 },
+
+                // Configuration options go here
                 options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
                     scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 1                     
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
                             }
                         }]
                     }
                 }
             });
+        }
 
+        function turnover() {
+            document.getElementById("button").innerText = "TO";
+
+            var data = [<%= turnover1 %>, <%= turnover2 %>,<%= turnover3 %>,<%= turnover4 %>,<%= turnover5 %>,<%= turnover6 %>,<%= turnover7 %>,<%= turnover8 %>,<%= turnover9 %>,<%= turnover10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function stl() {
+            document.getElementById("button").innerText = "STL";
+
+            var data = [<%= stl1 %>, <%= stl2 %>,<%= stl3 %>,<%= stl4 %>,<%= stl5 %>,<%= stl6 %>,<%= stl7 %>,<%= stl8 %>,<%= stl9 %>,<%= stl10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        function reb() {
+            document.getElementById("button").innerText = "REB";
+
+            var data = [<%= reb1 %>, <%= reb2 %>,<%= reb3 %>,<%= reb4 %>,<%= reb5 %>,<%= reb6 %>,<%= reb7 %>,<%= reb8 %>,<%= reb9 %>,<%= reb10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function pf() {
+            document.getElementById("button").innerText = "PF";
+
+            var data = [<%= pf1 %>, <%= pf2 %>,<%= pf3 %>,<%= pf4 %>,<%= pf5 %>,<%= pf6 %>,<%= pf7 %>,<%= pf8 %>,<%= pf9 %>,<%= pf10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                max: 6,
+                                stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function of_reb() {
+            document.getElementById("button").innerText = "OREB";
+
+            var data = [<%= oreb1 %>, <%= oreb2 %>,<%= oreb3 %>,<%= oreb4 %>,<%= oreb5 %>,<%= oreb6 %>,<%= oreb7 %>,<%= oreb8 %>,<%= oreb9 %>,<%= oreb10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function ftm() {
+            document.getElementById("button").innerText = "FTM";
+
+            var data = [<%= ftm1 %>, <%= ftm2 %>,<%= ftm3 %>,<%= ftm4 %>,<%= ftm5 %>,<%= ftm6 %>,<%= ftm7 %>,<%= ftm8 %>,<%= ftm9 %>,<%= ftm10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 25
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function fta() {
+            document.getElementById("button").innerText = "FTA";
+
+            var data = [<%= fta1 %>, <%= fta2 %>,<%= fta3 %>,<%= fta4 %>,<%= fta5 %>,<%= fta6 %>,<%= fta7 %>,<%= fta8 %>,<%= fta9 %>,<%= fta10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 25
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function ft_pct() {
+            document.getElementById("button").innerText = "FT_PCT";
+
+            var data = [<%= ft_pct1 %>, <%= ft_pct2 %>,<%= ft_pct3 %>,<%= ft_pct4 %>,<%= ft_pct5 %>,<%= ft_pct6 %>,<%= ft_pct7 %>,<%= ft_pct8 %>,<%= ft_pct9 %>,<%= ft_pct10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 25
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function fgm() {
+            document.getElementById("button").innerText = "FGM";
+
+            var data = [<%= fgm1 %>, <%= fgm2 %>,<%= fgm3 %>,<%= fgm4 %>,<%= fgm5 %>,<%= fgm6 %>,<%= fgm7 %>,<%= fgm8 %>,<%= fgm9 %>,<%= fgm10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 20
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function fga() {
+            document.getElementById("button").innerText = "FGA";
+
+            var data = [<%= fga1 %>, <%= fga2 %>,<%= fga3 %>,<%= fga4 %>,<%= fga5 %>,<%= fga6 %>,<%= fga7 %>,<%= fga8 %>,<%= fga9 %>,<%= fga10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 20
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function fg_pct() {
+            document.getElementById("button").innerText = "FG_PCT";
+
+            var data = [<%= fg_pct1 %>, <%= fg_pct2 %>,<%= fg_pct3 %>,<%= fg_pct4 %>,<%= fg_pct5 %>,<%= fg_pct6 %>,<%= fg_pct7 %>,<%= fg_pct8 %>,<%= fg_pct9 %>,<%= fg_pct10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 20
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function fg3m() {
+            document.getElementById("button").innerText = "FG3M";
+
+            var data = [<%= fg3m1 %>, <%= fg3m2 %>,<%= fg3m3 %>,<%= fg3m4 %>,<%= fg3m5 %>,<%= fg3m6 %>,<%= fg3m7 %>,<%= fg3m8 %>,<%= fg3m9 %>,<%= fg3m10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+
+        function fg3a() {
+            document.getElementById("button").innerText = "FG3A";
+
+            var data = [<%= fg3a1 %>, <%= fg3a2 %>,<%= fg3a3 %>,<%= fg3a4 %>,<%= fg3a5 %>,<%= fg3a6 %>,<%= fg3a7 %>,<%= fg3a8 %>,<%= fg3a9 %>,<%= fg3a10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function fg3_pct() {
+            document.getElementById("button").innerText = "FG3_PCT";
+
+            var data = [<%= fg3_pct1 %>, <%= fg3_pct2 %>,<%= fg3_pct3 %>,<%= fg3_pct4 %>,<%= fg3_pct5 %>,<%= fg3_pct6 %>,<%= fg3_pct7 %>,<%= fg3_pct8 %>,<%= fg3_pct9 %>,<%= fg3_pct10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 20
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function def_reb() {
+            document.getElementById("button").innerText = "DREB";
+
+            var data = [<%= dreb1 %>, <%= dreb2 %>,<%= dreb3 %>,<%= dreb4 %>,<%= dreb5 %>,<%= dreb6 %>,<%= dreb7 %>,<%= dreb8 %>,<%= dreb9 %>,<%= dreb10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function blk() {
+            document.getElementById("button").innerText = "BLK";
+
+            var data = [<%= b1 %>, <%= b2 %>,<%= b3 %>,<%= b4 %>,<%= b5 %>,<%= b6 %>,<%= b7 %>,<%= b8 %>,<%= b9 %>,<%= b10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                stepSize: 1
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+
+        function ast() {
+            document.getElementById("button").innerText = "AST";
+
+            var data = [<%= a1 %>, <%= a2 %>,<%= a3 %>,<%= a4 %>,<%= a5 %>,<%= a6 %>,<%= a7 %>,<%= a8 %>,<%= a9 %>,<%= a10 %>]
+
+            var name = "<%- fn %>" + " " + "<%- ln %>";
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    datasets: [{
+                        fill: false,
+                        label: name,
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: data
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 2,
+                            usePointStyle: true
+
+                        },
+                        onClick: function (e) {
+                            e.stopPropagation();
+                        }
+                    },
+
+                    scales: {
+                        xAxes: [{
+
+                            ticks: {
+
+                                beginAtZero: true,
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                drawOnChartArea: false,
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                // max: Math.max(...data),
+                                // stepSize: 1                     
+
+                            },
+                            gridLines: {
+                                // display: false,
+                                // zeroLineColor: "white",
+                                drawOnChartArea: false,
+
+                            }
+                        }]
+                    }
+                }
+            });
+        }
     </script>
 </body>
+
 </html>

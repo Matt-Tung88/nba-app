@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "latest-version": "^5.1.0",
     "node-fetch": "^2.6.0",
+    "node-pre-gyp": "^0.15.0",
     "request": "^2.88.2",
     "webpack": "^4.43.0"
   },

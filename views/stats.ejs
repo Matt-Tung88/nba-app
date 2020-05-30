@@ -119,10 +119,8 @@
 
 
 
+    <script > 
 
-
-
-    <script>
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
@@ -139,7 +137,7 @@
             }
         }
 
-        var data = [<%= pts1 %>, <%= pts2 %>,<%= pts3 %>,<%= pts4 %>,<%= pts5 %>,<%= pts6 %>,<%= pts7 %>,<%= pts8 %>,<%= pts9 %>,<%= pts10 %>]
+        var data = [<%= pts1 %>, <%= pts2 %>,<%= pts3 %>,<%= pts4 %>,<%= pts5 %>,<%= pts6 %>,<%= pts7 %>,<%= pts8 %>,<%= pts9 %>,<%= pts10 %>];
         console.log(data)
         console.log(Math.max(...data))
         var name = "<%- fn %>" + " " + "<%- ln %>";

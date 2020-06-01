@@ -1,7 +1,7 @@
 html, body {
     height: 100vh;
-    /* background-color: rgb(25, 25, 31); */
-
+    background-color: rgb(25, 25, 31);
+    font-family: 'Rajdhani', sans-serif;
 
 }
 
@@ -20,7 +20,7 @@ h2 {
 
 #player {
     padding-top: 10px;
-    margin-left: 19.3%;
+    margin-left: 21.4%;
 }
 
 
@@ -43,12 +43,13 @@ h5 {
 
 table th {
     padding: 10px 10px 3px 15px;
-    font-weight: normal;
+    font-weight: 300;
 
 }
 
 table td {
-    font-weight: bold;
+    font-weight: 600;
+    
     padding: 3px 10px 10px 15px;
 
 }
@@ -70,44 +71,48 @@ hr {
 }
 
 .dropbtn {
-  background-color: #3498DB;
+  border-color: rgb(128, 122, 145);
+  border-style: solid;
+  background-color: rgb(25, 25, 31);
   color: white;
   padding: 16px;
   font-size: 16px;
-  border: none;
   cursor: pointer;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+    border-color: white;
+    border-style: solid;
+    
 }
 
 .dropdown {
     display: inline-block;
     margin-bottom: 10px;
+    margin-left: 4px;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: rgb(61, 61, 74);
   min-width: 160px;
   overflow: scroll;
-      max-height: 30vh;
+  max-height: 30vh;
 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 .dropdown-content li {
-      cursor: pointer;
+  cursor: pointer;
 
-  color: black;
+  /* color: white; */
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 .dropdown li:hover {
-    background-color: #ddd;
+    background-color:  rgb(100, 100, 117); 
 }
 
 .show {

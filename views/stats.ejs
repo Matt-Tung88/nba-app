@@ -6,16 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Individual Stats</title>
     <link rel="stylesheet" href="/stats.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 
 <body>
-
     <div id="container">
-
         <div>
             <h2>'19 - '20 SEASON AVERAGES</h2>
         </div>
@@ -119,7 +117,7 @@
 
 
 
-    <script > 
+    <script>
 
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
@@ -138,29 +136,45 @@
         }
 
         var data = [<%= pts1 %>, <%= pts2 %>,<%= pts3 %>,<%= pts4 %>,<%= pts5 %>,<%= pts6 %>,<%= pts7 %>,<%= pts8 %>,<%= pts9 %>,<%= pts10 %>];
-        console.log(data)
-        console.log(Math.max(...data))
+        // console.log(data)
+        // console.log(Math.max(...data))
         var name = "<%- fn %>" + " " + "<%- ln %>";
         var ctx = document.getElementById('myChart');
         var myLineChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['', '', '', '', '', '', '', '', '', ''],
+                labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                    '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                    '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                 datasets: [{
                     fill: false,
                     label: name,
+                    borderWidth: 2,
                     borderColor: 'rgb(255, 99, 132)',
-                    data: data
+                    data: data,
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    pointStyle: "circle",
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointRadius: 3.5,
+                    pointHoverBorderColor: "white",
                 }]
             },
 
             // Configuration options go here
             options: {
                 responsive: true,
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: false,
+                },
                 legend: {
                     position: 'bottom',
                     labels: {
-                        boxWidth: 2,
+                        boxWidth: 3.5,
                         usePointStyle: true
 
                     },
@@ -169,15 +183,24 @@
                     }
                 },
 
+                layout: {
+                    padding: {
+                        right: 6,
+                    }
+                },
+
                 scales: {
                     xAxes: [{
-
                         ticks: {
-
+                            display: false,
                             beginAtZero: true,
 
                         },
                         gridLines: {
+                            // zeroLineColor: "white",
+                            color: "white",
+                            tickMarkLength: 7,
+                            // lineWidth: 1,
                             // display: false,
                             drawOnChartArea: false,
 
@@ -185,13 +208,17 @@
                     }],
                     yAxes: [{
                         ticks: {
+                            fontColor: "white",
                             beginAtZero: true,
                             // max: Math.max(...data),
                             // stepSize: 1                     
 
                         },
                         gridLines: {
+                            tickMarkLength: 7,
+
                             // display: false,
+                            color: "white",
                             // zeroLineColor: "white",
                             drawOnChartArea: false,
 
@@ -202,28 +229,46 @@
         });
 
         function pts() {
+            document.getElementById("button").innerText = "PTS";
+
             var data = [<%= pts1 %>, <%= pts2 %>,<%= pts3 %>,<%= pts4 %>,<%= pts5 %>,<%= pts6 %>,<%= pts7 %>,<%= pts8 %>,<%= pts9 %>,<%= pts10 %>]
             var name = "<%- fn %>" + " " + "<%- ln %>";
             var ctx = document.getElementById('myChart');
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -232,15 +277,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -248,13 +302,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 // stepSize: 1                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -275,22 +333,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -299,15 +373,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -315,13 +398,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 stepSize: 1
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -341,22 +428,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -365,15 +468,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -381,13 +493,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 stepSize: 1
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -401,29 +517,45 @@
         function reb() {
             document.getElementById("button").innerText = "REB";
 
-            var data = [<%= reb1 %>, <%= reb2 %>,<%= reb3 %>,<%= reb4 %>,<%= reb5 %>,<%= reb6 %>,<%= reb7 %>,<%= reb8 %>,<%= reb9 %>,<%= reb10 %>]
+            var data = [<%= reb1 %>, <%= reb2 %>,<%= reb3 %>,<%= reb4 %>,<%= reb5 %>,<%= reb6 %>,<%= reb7 %>,<%= reb8 %>,<%= reb9 %>,<%= reb10 %>];
 
             var name = "<%- fn %>" + " " + "<%- ln %>";
             var ctx = document.getElementById('myChart');
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -432,15 +564,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -448,13 +589,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 stepSize: 1
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -474,22 +619,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -498,15 +659,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -514,6 +684,7 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 max: 6,
@@ -521,7 +692,10 @@
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -541,22 +715,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -565,15 +755,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -581,13 +780,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 stepSize: 1
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -600,29 +803,45 @@
         function ftm() {
             document.getElementById("button").innerText = "FTM";
 
-            var data = [<%= ftm1 %>, <%= ftm2 %>,<%= ftm3 %>,<%= ftm4 %>,<%= ftm5 %>,<%= ftm6 %>,<%= ftm7 %>,<%= ftm8 %>,<%= ftm9 %>,<%= ftm10 %>]
+            var data = [<%= ftm1 %>, <%= ftm2 %>,<%= ftm3 %>,<%= ftm4 %>,<%= ftm5 %>,<%= ftm6 %>,<%= ftm7 %>,<%= ftm8 %>,<%= ftm9 %>,<%= ftm10 %>];
 
             var name = "<%- fn %>" + " " + "<%- ln %>";
             var ctx = document.getElementById('myChart');
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -631,15 +850,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -647,13 +875,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 25
+                                // stepSize: 25                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -673,22 +905,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -697,15 +945,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -713,13 +970,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 25
+                                // stepSize: 25                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -739,22 +1000,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -763,15 +1040,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -779,13 +1065,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 stepSize: 25
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -805,22 +1095,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -829,15 +1135,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -845,13 +1160,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 20
+                                // stepSize: 20                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -871,22 +1190,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -895,15 +1230,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -911,13 +1255,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 20
+                                // stepSize: 1                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -937,22 +1285,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -961,15 +1325,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -977,13 +1350,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 stepSize: 20
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -1003,22 +1380,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -1027,15 +1420,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -1043,13 +1445,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 1
+                                // stepSize: 1                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -1065,28 +1471,43 @@
             document.getElementById("button").innerText = "FG3A";
 
             var data = [<%= fg3a1 %>, <%= fg3a2 %>,<%= fg3a3 %>,<%= fg3a4 %>,<%= fg3a5 %>,<%= fg3a6 %>,<%= fg3a7 %>,<%= fg3a8 %>,<%= fg3a9 %>,<%= fg3a10 %>]
-
             var name = "<%- fn %>" + " " + "<%- ln %>";
             var ctx = document.getElementById('myChart');
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -1095,15 +1516,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -1111,13 +1541,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 1
+                                stepSize: 15                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -1137,22 +1571,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -1161,15 +1611,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -1177,13 +1636,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                stepSize: 20
+                                stepSize: 15
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -1203,22 +1666,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -1227,15 +1706,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -1243,13 +1731,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 1
+                                // stepSize: 1                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -1269,22 +1761,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -1293,15 +1801,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -1309,13 +1826,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 stepSize: 1
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
@@ -1337,22 +1858,38 @@
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', ''],
+                    labels: ['<%= game_date1%> vs <%= opponent1 %>', '<%= game_date2 %> vs <%= opponent2 %>', '<%= game_date3 %> vs <%= opponent3 %>', '<%= game_date4 %> vs <%= opponent4 %>',
+                        '<%= game_date5 %> vs <%= opponent5 %>', '<%= game_date6 %> vs <%= opponent6 %>', '<%= game_date7 %> vs <%= opponent7 %>', '<%= game_date8 %> vs <%= opponent8 %>',
+                        '<%= game_date9 %> vs <%= opponent9 %>', '<%= game_date10 %> vs <%= opponent10 %>'],
                     datasets: [{
                         fill: false,
                         label: name,
+                        borderWidth: 2,
                         borderColor: 'rgb(255, 99, 132)',
-                        data: data
+                        data: data,
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        pointStyle: "circle",
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointRadius: 3.5,
+                        pointHoverBorderColor: "white",
                     }]
                 },
 
                 // Configuration options go here
                 options: {
                     responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false,
+                    },
                     legend: {
                         position: 'bottom',
                         labels: {
-                            boxWidth: 2,
+                            boxWidth: 3.5,
                             usePointStyle: true
 
                         },
@@ -1361,15 +1898,24 @@
                         }
                     },
 
+                    layout: {
+                        padding: {
+                            right: 6,
+                        }
+                    },
+
                     scales: {
                         xAxes: [{
-
                             ticks: {
-
+                                display: false,
                                 beginAtZero: true,
 
                             },
                             gridLines: {
+                                // zeroLineColor: "white",
+                                color: "white",
+                                tickMarkLength: 7,
+                                // lineWidth: 1,
                                 // display: false,
                                 drawOnChartArea: false,
 
@@ -1377,13 +1923,17 @@
                         }],
                         yAxes: [{
                             ticks: {
+                                fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
                                 // stepSize: 1                     
 
                             },
                             gridLines: {
+                                tickMarkLength: 7,
+
                                 // display: false,
+                                color: "white",
                                 // zeroLineColor: "white",
                                 drawOnChartArea: false,
 

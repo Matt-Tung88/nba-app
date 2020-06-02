@@ -1,6 +1,7 @@
 
 window.onload = loadPlayers;
 
+// window.onload = players;
 
 function loadPlayers() {
     var playersList = [];
@@ -9,8 +10,8 @@ function loadPlayers() {
 
     search.addEventListener('keyup', (e) => {
         const input = e.target.value.toLowerCase();
-        console.log(input)
-        console.log(input.length)
+        // console.log(input)
+        // console.log(input.length)
 
 
         if (input.length < 2) {
@@ -24,20 +25,20 @@ function loadPlayers() {
                             `
             }).join('');
             r.innerHTML = matches;
-            
+
         }
 
 
-        else if(input.length >= 2) {
+        else if (input.length >= 2) {
             fetch(`https://www.balldontlie.io/api/v1/players?search=${input}&per_page=100`)
-            .then((res) => {
-                return res.json();
-            })                
-            .then((data) => {
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
 
 
                     playersList = [];
-                    if(data.meta.total_pages == 1) {
+                    if (data.meta.total_pages == 1) {
                         console.log(data.meta.total_pages)
                         for (var i = 0; i < data.data.length; i++) {
                             var name = data.data[i].id + ": " + data.data[i].first_name + " " + data.data[i].last_name + " - " + data.data[i].team.abbreviation;
@@ -46,7 +47,9 @@ function loadPlayers() {
 
                         }
 
-                        console.log(playersList);
+
+                        // console.log(playersList);
+
 
                         var matches = playersList.filter(function (item) {
                             return item.toLowerCase().indexOf(input) > -1;
@@ -59,9 +62,9 @@ function loadPlayers() {
                         r.innerHTML = matches;
 
 
-    
+
                     }
-                    else if(data.meta.total_pages > 1) {
+                    else if (data.meta.total_pages > 1) {
                         console.log(data.meta.total_pages)
 
                         for (var k = 1; k < data.meta.total_pages + 1; k++) {
@@ -74,14 +77,16 @@ function loadPlayers() {
                                         playersList.push(name);
 
 
-                                    } 
-                                    
+                                    }
+
 
                                 })
 
 
                         }
-                        console.log(playersList);
+                        // console.log(playersList);
+
+
 
                         var matches = playersList.filter(function (item) {
                             return item.toLowerCase().indexOf(input) > -1;
@@ -98,8 +103,8 @@ function loadPlayers() {
 
                 })
 
-        }   
-    
+        }
+
     })
 
 }
@@ -127,24 +132,48 @@ function filterPlayers() {
 
 
 
-// function playerInfo() {
-//     console.log("gag")
-//     fetch("/:name") 
-//         .then((res) => {
-//             return res.json();
-//         })
-//         .then((data) => {
+// function players() {
+//     var search = document.getElementById("search");
 
-//             console.log(data)
+//     var players = [];
 
-//     })
+//     for (var i = 0; i < 2; i++) {
+//         if (i === 0) {
+//             search.addEventListener('keyup', (e) => {
+//             var input = e.target.value.toLowerCase();
+//             console.log(input)
+
+//             if(input > 2) {
+//                 fetch(`https://www.balldontlie.io/api/v1/players?search=${input}&per_page=100`)
+//                     .then((res) => {
+//                         return res.json()
+//                     })
+//                     .then((data) => {
+
+//                             // for(var i=0; i < data.data.length; i++) {
+//                             // players.push(data.data[i].player_id);
+
+//                             // }
+//                         console.log(data.data)
+
+
+                        
+//                     })
+
+
+//             }
+//                 console.log(players)
+
+
+
+//             })
+
+//         }
+//     }
+
+
 // }
 
-
-
-
-
-// playerInfo();
 
 
 

@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <% if(locals.message){ %>
+    <div id="alert">
+        <%=message.alert%>
+    </div>
+    <% } %>
+
     <div id="container">
         <div>
             <h2>'19 - '20 SEASON AVERAGES</h2>
@@ -24,7 +30,7 @@
         </div>
 
         <div>
-            <table id="table">
+            <table class="table1">
                 <tr>
                     <th>GP</th>
                     <th>MIN</th>
@@ -78,8 +84,8 @@
 
     <hr>
 
-    <div id="next">
-        <div id="header">
+    <div class="next">
+        <div class="header">
             <h2>LAST TEN</h2>
 
         </div>
@@ -111,11 +117,266 @@
 
     </div>
 
-    <div id="chart" style="width:600px; height:400px; margin: 0 auto">
+    <div id="chart" style="width:600px; height:300px; margin: 0 auto">
         <canvas id="myChart"></canvas>
     </div>
 
+    <hr>
 
+    <div class="next">
+        <div class="header">
+            <h2>LAST TEN GAME STATS</h2>
+
+        </div>
+        <div>
+            <table class="table2">
+                <tr>
+                    <th>OPP</th>
+                    <th>MIN</th>
+                    <th>FGM</th>
+                    <th>FGA</th>
+                    <th>FG_PCT</th>
+                    <th>FG3M</th>
+                    <th>FG3A</th>
+                    <th>FG3_PCT</th>
+                    <th>FTM</th>
+                    <th>FTA</th>
+                    <th>FT_PCT</th>
+                    <th>OREB</th>
+                    <th>DREB</th>
+                    <th>REB</th>
+                    <th>AST</th>
+                    <th>STL</th>
+                    <th>BLK</th>
+                    <th>TO</th>
+                    <th>PF</th>
+                    <th>PTS</th>
+                </tr>
+                <tr>
+                    <td><%= game_date10 %> vs <%= opponent10 %></td>
+                    <td><%= min10  %></td>
+                    <td><%= fgm10 %></td>
+                    <td><%= fga10 %></td>
+                    <td><%= fg_pct10 %></td>
+                    <td><%= fg3m10 %></td>
+                    <td><%= fg3a10 %></td>
+                    <td><%= fg3_pct10 %></td>
+                    <td><%= ftm10 %></td>
+                    <td><%= fta10 %></td>
+                    <td><%= ft_pct10 %></td>
+                    <td><%= oreb10 %></td>
+                    <td><%= dreb10 %></td>
+                    <td><%= reb10 %></td>
+                    <td><%= a10 %></td>
+                    <td><%= stl10 %></td>
+                    <td><%= b10 %></td>
+                    <td><%= turnover10 %></td>
+                    <td><%= pf10 %></td>
+                    <td><%= pts10 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date9 %> vs <%= opponent9 %></td>
+                    <td><%= min9  %></td>
+                    <td><%= fgm9 %></td>
+                    <td><%= fga9 %></td>
+                    <td><%= fg_pct9 %></td>
+                    <td><%= fg3m9 %></td>
+                    <td><%= fg3a9 %></td>
+                    <td><%= fg3_pct9 %></td>
+                    <td><%= ftm9 %></td>
+                    <td><%= fta9 %></td>
+                    <td><%= ft_pct9 %></td>
+                    <td><%= oreb9 %></td>
+                    <td><%= dreb9 %></td>
+                    <td><%= reb9 %></td>
+                    <td><%= a9 %></td>
+                    <td><%= stl9 %></td>
+                    <td><%= b9 %></td>
+                    <td><%= turnover9 %></td>
+                    <td><%= pf9 %></td>
+                    <td><%= pts9 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date8 %> vs <%= opponent8 %></td>
+                    <td><%= min8  %></td>
+                    <td><%= fgm8 %></td>
+                    <td><%= fga8 %></td>
+                    <td><%= fg_pct8 %></td>
+                    <td><%= fg3m8 %></td>
+                    <td><%= fg3a8 %></td>
+                    <td><%= fg3_pct8 %></td>
+                    <td><%= ftm8 %></td>
+                    <td><%= fta8 %></td>
+                    <td><%= ft_pct8 %></td>
+                    <td><%= oreb8 %></td>
+                    <td><%= dreb8 %></td>
+                    <td><%= reb8 %></td>
+                    <td><%= a8 %></td>
+                    <td><%= stl8 %></td>
+                    <td><%= b8 %></td>
+                    <td><%= turnover8 %></td>
+                    <td><%= pf8 %></td>
+                    <td><%= pts8 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date7 %> vs <%= opponent7 %></td>
+                    <td><%= min7 %></td>
+                    <td><%= fgm7 %></td>
+                    <td><%= fga7 %></td>
+                    <td><%= fg_pct7 %></td>
+                    <td><%= fg3m7 %></td>
+                    <td><%= fg3a7 %></td>
+                    <td><%= fg3_pct7 %></td>
+                    <td><%= ftm7 %></td>
+                    <td><%= fta7 %></td>
+                    <td><%= ft_pct7 %></td>
+                    <td><%= oreb7 %></td>
+                    <td><%= dreb7 %></td>
+                    <td><%= reb7 %></td>
+                    <td><%= a7 %></td>
+                    <td><%= stl7 %></td>
+                    <td><%= b7 %></td>
+                    <td><%= turnover7 %></td>
+                    <td><%= pf7 %></td>
+                    <td><%= pts7 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date6 %> vs <%= opponent6 %></td>
+                    <td><%= min6  %></td>
+                    <td><%= fgm6 %></td>
+                    <td><%= fga6 %></td>
+                    <td><%= fg_pct6 %></td>
+                    <td><%= fg3m6 %></td>
+                    <td><%= fg3a6 %></td>
+                    <td><%= fg3_pct6 %></td>
+                    <td><%= ftm6 %></td>
+                    <td><%= fta6 %></td>
+                    <td><%= ft_pct6 %></td>
+                    <td><%= oreb6 %></td>
+                    <td><%= dreb6 %></td>
+                    <td><%= reb6 %></td>
+                    <td><%= a6 %></td>
+                    <td><%= stl6 %></td>
+                    <td><%= b6 %></td>
+                    <td><%= turnover6 %></td>
+                    <td><%= pf6 %></td>
+                    <td><%= pts6 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date5 %> vs <%= opponent5 %></td>
+                    <td><%= min5  %></td>
+                    <td><%= fgm5 %></td>
+                    <td><%= fga5 %></td>
+                    <td><%= fg_pct5 %></td>
+                    <td><%= fg3m5 %></td>
+                    <td><%= fg3a5 %></td>
+                    <td><%= fg3_pct5 %></td>
+                    <td><%= ftm5 %></td>
+                    <td><%= fta5 %></td>
+                    <td><%= ft_pct5 %></td>
+                    <td><%= oreb5 %></td>
+                    <td><%= dreb5 %></td>
+                    <td><%= reb5 %></td>
+                    <td><%= a5 %></td>
+                    <td><%= stl5 %></td>
+                    <td><%= b5 %></td>
+                    <td><%= turnover5 %></td>
+                    <td><%= pf5 %></td>
+                    <td><%= pts5 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date4 %> vs <%= opponent4 %></td>
+                    <td><%= min4  %></td>
+                    <td><%= fgm4 %></td>
+                    <td><%= fga4 %></td>
+                    <td><%= fg_pct4 %></td>
+                    <td><%= fg3m4 %></td>
+                    <td><%= fg3a4 %></td>
+                    <td><%= fg3_pct4 %></td>
+                    <td><%= ftm4 %></td>
+                    <td><%= fta4 %></td>
+                    <td><%= ft_pct4 %></td>
+                    <td><%= oreb4 %></td>
+                    <td><%= dreb4 %></td>
+                    <td><%= reb4 %></td>
+                    <td><%= a4 %></td>
+                    <td><%= stl4 %></td>
+                    <td><%= b4 %></td>
+                    <td><%= turnover4 %></td>
+                    <td><%= pf4 %></td>
+                    <td><%= pts4 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date3 %> vs <%= opponent3 %></td>
+                    <td><%= min3  %></td>
+                    <td><%= fgm3 %></td>
+                    <td><%= fga3 %></td>
+                    <td><%= fg_pct3 %></td>
+                    <td><%= fg3m3 %></td>
+                    <td><%= fg3a3 %></td>
+                    <td><%= fg3_pct3 %></td>
+                    <td><%= ftm3 %></td>
+                    <td><%= fta3 %></td>
+                    <td><%= ft_pct3 %></td>
+                    <td><%= oreb3 %></td>
+                    <td><%= dreb3 %></td>
+                    <td><%= reb3 %></td>
+                    <td><%= a3 %></td>
+                    <td><%= stl3 %></td>
+                    <td><%= b3 %></td>
+                    <td><%= turnover3 %></td>
+                    <td><%= pf3 %></td>
+                    <td><%= pts3 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date2 %> vs <%= opponent2 %></td>
+                    <td><%= min2 %></td>
+                    <td><%= fgm2 %></td>
+                    <td><%= fga2 %></td>
+                    <td><%= fg_pct2 %></td>
+                    <td><%= fg3m2 %></td>
+                    <td><%= fg3a2 %></td>
+                    <td><%= fg3_pct2 %></td>
+                    <td><%= ftm2 %></td>
+                    <td><%= fta2 %></td>
+                    <td><%= ft_pct2 %></td>
+                    <td><%= oreb2 %></td>
+                    <td><%= dreb2 %></td>
+                    <td><%= reb2 %></td>
+                    <td><%= a2 %></td>
+                    <td><%= stl2 %></td>
+                    <td><%= b2 %></td>
+                    <td><%= turnover2 %></td>
+                    <td><%= pf2 %></td>
+                    <td><%= pts2 %></td>
+                </tr>
+                <tr>
+                    <td><%= game_date1 %> vs <%= opponent1 %></td>
+                    <td><%= min1  %></td>
+                    <td><%= fgm1 %></td>
+                    <td><%= fga1 %></td>
+                    <td><%= fg_pct1 %></td>
+                    <td><%= fg3m1 %></td>
+                    <td><%= fg3a1 %></td>
+                    <td><%= fg3_pct1 %></td>
+                    <td><%= ftm1 %></td>
+                    <td><%= fta1 %></td>
+                    <td><%= ft_pct1 %></td>
+                    <td><%= oreb1 %></td>
+                    <td><%= dreb1 %></td>
+                    <td><%= reb1 %></td>
+                    <td><%= a1 %></td>
+                    <td><%= stl1 %></td>
+                    <td><%= b1 %></td>
+                    <td><%= turnover1 %></td>
+                    <td><%= pf1 %></td>
+                    <td><%= pts1 %></td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
 
     <script>
 
@@ -174,6 +435,7 @@
                 legend: {
                     position: 'bottom',
                     labels: {
+                        fontColor: "white",
                         boxWidth: 3.5,
                         usePointStyle: true
 
@@ -197,11 +459,9 @@
 
                         },
                         gridLines: {
-                            // zeroLineColor: "white",
                             color: "white",
                             tickMarkLength: 7,
-                            // lineWidth: 1,
-                            // display: false,
+
                             drawOnChartArea: false,
 
                         }
@@ -216,10 +476,7 @@
                         },
                         gridLines: {
                             tickMarkLength: 7,
-
-                            // display: false,
                             color: "white",
-                            // zeroLineColor: "white",
                             drawOnChartArea: false,
 
                         }
@@ -228,8 +485,17 @@
             }
         });
 
+
+
         function pts() {
             document.getElementById("button").innerText = "PTS";
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= pts1 %>, <%= pts2 %>,<%= pts3 %>,<%= pts4 %>,<%= pts5 %>,<%= pts6 %>,<%= pts7 %>,<%= pts8 %>,<%= pts9 %>,<%= pts10 %>]
             var name = "<%- fn %>" + " " + "<%- ln %>";
@@ -251,6 +517,7 @@
                         pointBackgroundColor: 'rgb(255, 99, 132)',
                         pointRadius: 3.5,
                         pointHoverBorderColor: "white",
+
                     }]
                 },
 
@@ -268,9 +535,10 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: 'white',
                             boxWidth: 3.5,
-                            usePointStyle: true
-
+                            usePointStyle: true,
+                            // fontColor: 'white',
                         },
                         onClick: function (e) {
                             e.stopPropagation();
@@ -291,11 +559,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -310,10 +575,7 @@
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -325,6 +587,15 @@
 
         function turnover() {
             document.getElementById("button").innerText = "TO";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
+
 
             var data = [<%= turnover1 %>, <%= turnover2 %>,<%= turnover3 %>,<%= turnover4 %>,<%= turnover5 %>,<%= turnover6 %>,<%= turnover7 %>,<%= turnover8 %>,<%= turnover9 %>,<%= turnover10 %>]
 
@@ -364,6 +635,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -387,11 +659,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -406,10 +675,7 @@
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -420,6 +686,14 @@
         }
         function stl() {
             document.getElementById("button").innerText = "STL";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= stl1 %>, <%= stl2 %>,<%= stl3 %>,<%= stl4 %>,<%= stl5 %>,<%= stl6 %>,<%= stl7 %>,<%= stl8 %>,<%= stl9 %>,<%= stl10 %>]
 
@@ -459,6 +733,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -482,11 +757,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -501,10 +773,7 @@
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -516,6 +785,14 @@
 
         function reb() {
             document.getElementById("button").innerText = "REB";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= reb1 %>, <%= reb2 %>,<%= reb3 %>,<%= reb4 %>,<%= reb5 %>,<%= reb6 %>,<%= reb7 %>,<%= reb8 %>,<%= reb9 %>,<%= reb10 %>];
 
@@ -555,6 +832,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -578,11 +856,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -597,10 +872,7 @@
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -611,6 +883,14 @@
         }
         function pf() {
             document.getElementById("button").innerText = "PF";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= pf1 %>, <%= pf2 %>,<%= pf3 %>,<%= pf4 %>,<%= pf5 %>,<%= pf6 %>,<%= pf7 %>,<%= pf8 %>,<%= pf9 %>,<%= pf10 %>]
 
@@ -650,6 +930,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -673,11 +954,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -694,9 +972,7 @@
                             gridLines: {
                                 tickMarkLength: 7,
 
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -707,6 +983,14 @@
         }
         function of_reb() {
             document.getElementById("button").innerText = "OREB";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= oreb1 %>, <%= oreb2 %>,<%= oreb3 %>,<%= oreb4 %>,<%= oreb5 %>,<%= oreb6 %>,<%= oreb7 %>,<%= oreb8 %>,<%= oreb9 %>,<%= oreb10 %>]
 
@@ -746,6 +1030,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -769,11 +1054,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -788,10 +1070,7 @@
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -802,6 +1081,14 @@
         }
         function ftm() {
             document.getElementById("button").innerText = "FTM";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= ftm1 %>, <%= ftm2 %>,<%= ftm3 %>,<%= ftm4 %>,<%= ftm5 %>,<%= ftm6 %>,<%= ftm7 %>,<%= ftm8 %>,<%= ftm9 %>,<%= ftm10 %>];
 
@@ -841,6 +1128,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -864,11 +1152,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -877,16 +1162,14 @@
                             ticks: {
                                 fontColor: "white",
                                 beginAtZero: true,
-                                // max: Math.max(...data),
-                                // stepSize: 25                     
+                                suggestedMax: Math.max(...data),
+                                // suggestedMin: Math.min(...data),
+                                stepSize: 1
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -897,6 +1180,14 @@
         }
         function fta() {
             document.getElementById("button").innerText = "FTA";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= fta1 %>, <%= fta2 %>,<%= fta3 %>,<%= fta4 %>,<%= fta5 %>,<%= fta6 %>,<%= fta7 %>,<%= fta8 %>,<%= fta9 %>,<%= fta10 %>]
 
@@ -936,6 +1227,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -959,11 +1251,9 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
+
                                 drawOnChartArea: false,
 
                             }
@@ -973,15 +1263,12 @@
                                 fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 25                     
+                                stepSize: 1
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -992,6 +1279,14 @@
         }
         function ft_pct() {
             document.getElementById("button").innerText = "FT_PCT";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= ft_pct1 %>, <%= ft_pct2 %>,<%= ft_pct3 %>,<%= ft_pct4 %>,<%= ft_pct5 %>,<%= ft_pct6 %>,<%= ft_pct7 %>,<%= ft_pct8 %>,<%= ft_pct9 %>,<%= ft_pct10 %>]
 
@@ -1031,6 +1326,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1054,11 +1350,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1067,16 +1360,13 @@
                             ticks: {
                                 fontColor: "white",
                                 beginAtZero: true,
-                                // max: Math.max(...data),
+                                suggestedMax: Math.max(...data),
                                 stepSize: 25
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1087,6 +1377,14 @@
         }
         function fgm() {
             document.getElementById("button").innerText = "FGM";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= fgm1 %>, <%= fgm2 %>,<%= fgm3 %>,<%= fgm4 %>,<%= fgm5 %>,<%= fgm6 %>,<%= fgm7 %>,<%= fgm8 %>,<%= fgm9 %>,<%= fgm10 %>]
 
@@ -1124,6 +1422,7 @@
                         intersect: false,
                     },
                     legend: {
+                        fontColor: "white",
                         position: 'bottom',
                         labels: {
                             boxWidth: 3.5,
@@ -1149,11 +1448,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1163,15 +1459,12 @@
                                 fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 20                     
+                                stepSize: 2
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1182,6 +1475,14 @@
         }
         function fga() {
             document.getElementById("button").innerText = "FGA";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= fga1 %>, <%= fga2 %>,<%= fga3 %>,<%= fga4 %>,<%= fga5 %>,<%= fga6 %>,<%= fga7 %>,<%= fga8 %>,<%= fga9 %>,<%= fga10 %>]
 
@@ -1221,6 +1522,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1244,11 +1546,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1258,15 +1557,12 @@
                                 fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 1                     
+                                stepSize: 2
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1277,6 +1573,14 @@
         }
         function fg_pct() {
             document.getElementById("button").innerText = "FG_PCT";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= fg_pct1 %>, <%= fg_pct2 %>,<%= fg_pct3 %>,<%= fg_pct4 %>,<%= fg_pct5 %>,<%= fg_pct6 %>,<%= fg_pct7 %>,<%= fg_pct8 %>,<%= fg_pct9 %>,<%= fg_pct10 %>]
 
@@ -1316,6 +1620,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1339,11 +1644,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1352,16 +1654,13 @@
                             ticks: {
                                 fontColor: "white",
                                 beginAtZero: true,
-                                // max: Math.max(...data),
+                                max: 100,
                                 stepSize: 20
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1372,6 +1671,14 @@
         }
         function fg3m() {
             document.getElementById("button").innerText = "FG3M";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= fg3m1 %>, <%= fg3m2 %>,<%= fg3m3 %>,<%= fg3m4 %>,<%= fg3m5 %>,<%= fg3m6 %>,<%= fg3m7 %>,<%= fg3m8 %>,<%= fg3m9 %>,<%= fg3m10 %>]
 
@@ -1409,8 +1716,10 @@
                         intersect: false,
                     },
                     legend: {
+
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1434,11 +1743,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1448,15 +1754,12 @@
                                 fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 1                     
+                                stepSize: 1
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1469,6 +1772,14 @@
 
         function fg3a() {
             document.getElementById("button").innerText = "FG3A";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= fg3a1 %>, <%= fg3a2 %>,<%= fg3a3 %>,<%= fg3a4 %>,<%= fg3a5 %>,<%= fg3a6 %>,<%= fg3a7 %>,<%= fg3a8 %>,<%= fg3a9 %>,<%= fg3a10 %>]
             var name = "<%- fn %>" + " " + "<%- ln %>";
@@ -1507,6 +1818,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1530,11 +1842,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1544,15 +1853,12 @@
                                 fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                stepSize: 15                     
+                                stepSize: 1
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1563,6 +1869,14 @@
         }
         function fg3_pct() {
             document.getElementById("button").innerText = "FG3_PCT";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= fg3_pct1 %>, <%= fg3_pct2 %>,<%= fg3_pct3 %>,<%= fg3_pct4 %>,<%= fg3_pct5 %>,<%= fg3_pct6 %>,<%= fg3_pct7 %>,<%= fg3_pct8 %>,<%= fg3_pct9 %>,<%= fg3_pct10 %>]
 
@@ -1602,6 +1916,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1625,11 +1940,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1638,16 +1950,13 @@
                             ticks: {
                                 fontColor: "white",
                                 beginAtZero: true,
-                                // max: Math.max(...data),
-                                stepSize: 15
+                                max: 100,
+                                stepSize: 20
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1658,6 +1967,14 @@
         }
         function def_reb() {
             document.getElementById("button").innerText = "DREB";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= dreb1 %>, <%= dreb2 %>,<%= dreb3 %>,<%= dreb4 %>,<%= dreb5 %>,<%= dreb6 %>,<%= dreb7 %>,<%= dreb8 %>,<%= dreb9 %>,<%= dreb10 %>]
 
@@ -1697,6 +2014,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1720,11 +2038,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1734,15 +2049,12 @@
                                 fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 1                     
+                                stepSize: 1
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1753,6 +2065,14 @@
         }
         function blk() {
             document.getElementById("button").innerText = "BLK";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= b1 %>, <%= b2 %>,<%= b3 %>,<%= b4 %>,<%= b5 %>,<%= b6 %>,<%= b7 %>,<%= b8 %>,<%= b9 %>,<%= b10 %>]
 
@@ -1792,6 +2112,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1815,11 +2136,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1834,10 +2152,7 @@
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }
@@ -1850,6 +2165,14 @@
 
         function ast() {
             document.getElementById("button").innerText = "AST";
+
+            var graph = document.getElementById("myChart")
+            graph.remove();
+            var mycanvas = document.createElement("canvas");
+            mycanvas.id = "myChart";
+
+
+            document.getElementById('chart').appendChild(mycanvas);
 
             var data = [<%= a1 %>, <%= a2 %>,<%= a3 %>,<%= a4 %>,<%= a5 %>,<%= a6 %>,<%= a7 %>,<%= a8 %>,<%= a9 %>,<%= a10 %>]
 
@@ -1889,6 +2212,7 @@
                     legend: {
                         position: 'bottom',
                         labels: {
+                            fontColor: "white",
                             boxWidth: 3.5,
                             usePointStyle: true
 
@@ -1912,11 +2236,8 @@
 
                             },
                             gridLines: {
-                                // zeroLineColor: "white",
                                 color: "white",
                                 tickMarkLength: 7,
-                                // lineWidth: 1,
-                                // display: false,
                                 drawOnChartArea: false,
 
                             }
@@ -1926,15 +2247,12 @@
                                 fontColor: "white",
                                 beginAtZero: true,
                                 // max: Math.max(...data),
-                                // stepSize: 1                     
+                                stepSize: 1
 
                             },
                             gridLines: {
                                 tickMarkLength: 7,
-
-                                // display: false,
                                 color: "white",
-                                // zeroLineColor: "white",
                                 drawOnChartArea: false,
 
                             }

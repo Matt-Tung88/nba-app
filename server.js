@@ -1,16 +1,30 @@
 const express = require("express");
 const fetch = require("node-fetch");
+const flash = require('connect-flash');
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+
+const sessionStore = new session.MemoryStore;
+
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// app.use(express.static('src'));
 
 // app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
 app.use(express.static('public'));
 app.use(express.json());
 app.set('view engine', 'ejs');
+
+app.use(cookieParser('secret'));
+app.use(session({
+    cookie: { maxAge: 60000 },
+    store: sessionStore,
+    saveUninitialized: true,
+    resave: 'true',
+    secret: 'secret'
+}));
+app.use(flash());
 
 
 app.get('/:name', async (req, res) => {
@@ -19,34 +33,35 @@ app.get('/:name', async (req, res) => {
     var stats = [];
     var teams = ["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA",
         "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"];
-
-
     for (var i = 0; i < 4; i++) {
         if (i === 0) {
             // console.log("----------------------------------")
             await fetch(`https://www.balldontlie.io/api/v1/players/${name}`)
                 .then((res) => {
-                    return res.json();
+                    return res.json()
                 })
                 .then((data) => {
-                    // stats.push({ fn: data.first_name, ln: data.last_name, position: data.position, team: data.team.abbreviation })
-                    // stats.push(data.first_name);
-                    // data = [data.first_name, data.last_name, data.position, data.team.abbreviation];
-                    // stats.push(data)
                     stats.push(data.first_name, data.last_name, data.position, data.team.abbreviation);
-                    // console.log(stats)
-
-                    // data.first_name, data.last_name, data.position, data.team.abbreviation
-                    //    data =  { fn: data.first_name, ln: data.last_name, position: data.position, team: data.team.abbreviation }
-                });
+                })
+                .catch ((err) => {
+                console.log(err);
+                // res.redirect('/error');
+            });
 
         }
         else if (i === 1) {
             await fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${name}`)
                 .then((res) => {
-                    return res.json();
+                    return res.json()
                 })
                 .then((data) => {
+
+                    if(data.data.length === 0) {
+                        req.flash('alert', `*Note: This Player Didn't Play in the '19-'20 Season! Search Another Player!*`);
+                        res.locals.message = req.flash();
+                    }
+                    // else {
+
                     for (var i = 0; i < data.data.length; i++) {
 
                         stats.push(
@@ -71,7 +86,11 @@ app.get('/:name', async (req, res) => {
                             data.data[i].fg3_pct,
                             data.data[i].ft_pct)
                     };
-
+                // }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    // res.redirect('/error');
                 });
 
 
@@ -124,10 +143,17 @@ app.get('/:name', async (req, res) => {
 
 
                     }
-                    // console.log(stats[204])
+
+                    for(var k=data.data.length - 10; k <data.data.length; k++) {
+                        stats.push(data.data[k].min)
+                    }
 
 
                 })
+                .catch((err) => {
+                    console.log(err);
+                    // res.redirect('/error');
+                });
 
 
         }
@@ -138,18 +164,16 @@ app.get('/:name', async (req, res) => {
                 })
                 .then((data) => {
 
-                    // for (var i = 0; i < data.data.length; i++) {
-                    //     stats.push(data.data[i].abbreviation);
-
-                    // }
-                    // console.log(stats[205])
-
-                    for (var j = stats.length - 19; j < stats.length; j++) {
+                    for (var j = stats.length - 29; j < stats.length-10; j++) {
                         // console.log(stats[j])
                         if (!isNaN(stats[j])) {
-                            // console.log(teams[stats[j] - 1])
                             stats[j] = teams[stats[j] - 1]
-                            // console.log(stats[j])
+                        }
+                    }
+                    
+                    for(var k= stats.length-10; k < stats.length; k++) {
+                        if(stats[k] === "") {
+                            stats[k] = "0:00";
                         }
                     }
 
@@ -399,12 +423,24 @@ app.get('/:name', async (req, res) => {
                             opponent9: stats[221],
 
                             game_date10: stats[222],
-                            opponent10: stats[223]
+                            opponent10: stats[223],
+
+                            min1: stats[224],
+                            min2: stats[225],
+                            min3: stats[226],
+                            min4: stats[227],
+                            min5: stats[228],
+                            min6: stats[229],
+                            min7: stats[230],
+                            min8: stats[231],
+                            min9: stats[232],
+                            min10: stats[233]
+
 
 
 
                         }
-                        // console.log(stats[225])
+                        // console.log(stats[230])
                         res.render("stats", data)
 
 
@@ -413,6 +449,10 @@ app.get('/:name', async (req, res) => {
                     }
 
                 })
+                .catch((err) => {
+                    console.log(err);
+                    // res.redirect('/error');
+                });
 
 
         }

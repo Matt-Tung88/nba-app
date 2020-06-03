@@ -33,9 +33,9 @@ app.get('/:name', async (req, res) => {
     var stats = [];
     var teams = ["ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA",
         "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"];
+
     for (var i = 0; i < 4; i++) {
         if (i === 0) {
-            // console.log("----------------------------------")
             await fetch(`https://www.balldontlie.io/api/v1/players/${name}`)
                 .then((res) => {
                     return res.json()
@@ -43,10 +43,10 @@ app.get('/:name', async (req, res) => {
                 .then((data) => {
                     stats.push(data.first_name, data.last_name, data.position, data.team.abbreviation);
                 })
-                .catch ((err) => {
-                console.log(err);
-                // res.redirect('/error');
-            });
+                .catch((err) => {
+                    console.log(err);
+
+                });
 
         }
         else if (i === 1) {
@@ -56,37 +56,37 @@ app.get('/:name', async (req, res) => {
                 })
                 .then((data) => {
 
-                    if(data.data.length === 0) {
+                    if (data.data.length === 0) {
                         req.flash('alert', `*Note: This Player Didn't Play in the '19-'20 Season! Search Another Player!*`);
                         res.locals.message = req.flash();
                     }
-                    // else {
+                    else {
 
-                    for (var i = 0; i < data.data.length; i++) {
+                        for (var i = 0; i < data.data.length; i++) {
 
-                        stats.push(
-                            data.data[i].games_played,
-                            data.data[i].min,
-                            data.data[i].fgm,
-                            data.data[i].fga,
-                            data.data[i].fg3m,
-                            data.data[i].fg3a,
-                            data.data[i].ftm,
-                            data.data[i].fta,
-                            data.data[i].oreb,
-                            data.data[i].dreb,
-                            data.data[i].reb,
-                            data.data[i].ast,
-                            data.data[i].stl,
-                            data.data[i].blk,
-                            data.data[i].turnover,
-                            data.data[i].pf,
-                            data.data[i].pts,
-                            data.data[i].fg_pct,
-                            data.data[i].fg3_pct,
-                            data.data[i].ft_pct)
-                    };
-                // }
+                            stats.push(
+                                data.data[i].games_played,
+                                data.data[i].min,
+                                data.data[i].fgm,
+                                data.data[i].fga,
+                                data.data[i].fg3m,
+                                data.data[i].fg3a,
+                                data.data[i].ftm,
+                                data.data[i].fta,
+                                data.data[i].oreb,
+                                data.data[i].dreb,
+                                data.data[i].reb,
+                                data.data[i].ast,
+                                data.data[i].stl,
+                                data.data[i].blk,
+                                data.data[i].turnover,
+                                data.data[i].pf,
+                                data.data[i].pts,
+                                data.data[i].fg_pct,
+                                data.data[i].fg3_pct,
+                                data.data[i].ft_pct)
+                        };
+                    }
                 })
                 .catch((err) => {
                     console.log(err);
@@ -107,8 +107,32 @@ app.get('/:name', async (req, res) => {
                         var dateB = new Date(b.game.date);
                         return dateA - dateB;
                     })
-                    // console.log(data.data)
+
                     for (var i = data.data.length - 10; i < data.data.length; i++) {
+
+                        if (data.data[i] === undefined) {
+                            stats.push(
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                                data.data[i] = "",
+                            );
+                        }
+                        else {
                         stats.push(
                             data.data[i].ast,
                             data.data[i].blk,
@@ -129,24 +153,71 @@ app.get('/:name', async (req, res) => {
                             data.data[i].stl,
                             data.data[i].turnover
                         );
-
-                    }
-                    for (var j = data.data.length - 10; j < data.data.length; j++) {
-                        if (data.data[j].game.home_team_id !== data.data[j].player.team_id) {
-                            stats.push(data.data[j].game.date.split('T')[0], data.data[j].game.home_team_id);
-
-                        }
-                        else if (data.data[j].game.visitor_team_id !== data.data[j].player.team_id) {
-                            stats.push(data.data[j].game.date.split('T')[0], data.data[j].game.visitor_team_id);
-
                         }
 
+                    }
+                    // console.log(stats)
 
+
+                    var length = 10 - data.data.length;
+                            console.log(length)
+
+                    if (data.data.length < 10) {
+
+                        for (var j = 0; j < data.data.length; j++) {
+                            if (data.data[j].game.home_team_id !== data.data[j].player.team_id) {
+                                stats.push(data.data[j].game.date.split('T')[0], data.data[j].game.home_team_id);
+
+                            }
+                            else if (data.data[j].game.visitor_team_id !== data.data[j].player.team_id) {
+                                stats.push(data.data[j].game.date.split('T')[0], data.data[j].game.visitor_team_id);
+
+                            }
+                        }
+
+
+
+                        for (var q = 0; q < length; q++) {
+                            stats.push(data.data[q] = "", data.data[q] = "");
+                        }
+
+
+                    } else {
+                        for (var j = data.data.length - 10; j < data.data.length; j++) {
+
+                            if (data.data[j].game.home_team_id !== data.data[j].player.team_id) {
+                                stats.push(data.data[j].game.date.split('T')[0], data.data[j].game.home_team_id);
+
+                            }
+                            else if (data.data[j].game.visitor_team_id !== data.data[j].player.team_id) {
+                                stats.push(data.data[j].game.date.split('T')[0], data.data[j].game.visitor_team_id);
+
+                            }
+
+                        }
                     }
 
-                    for(var k=data.data.length - 10; k <data.data.length; k++) {
-                        stats.push(data.data[k].min)
+
+
+                    if (data.data.length < 10) {
+                        for (var z = 0; z < length; z++) {
+                            stats.push(data.data[z] = "");
+                        }
+
                     }
+                    else {
+                        for (var k = data.data.length - 10; k < data.data.length; k++) {
+                            stats.push(data.data[k].min)
+                        }
+                    }
+
+
+                    // console.log(stats)
+
+
+
+
+
 
 
                 })
@@ -164,19 +235,25 @@ app.get('/:name', async (req, res) => {
                 })
                 .then((data) => {
 
-                    for (var j = stats.length - 29; j < stats.length-10; j++) {
+                    for (var j = stats.length - 29; j < stats.length - 10; j++) {
                         // console.log(stats[j])
                         if (!isNaN(stats[j])) {
                             stats[j] = teams[stats[j] - 1]
                         }
                     }
-                    
-                    for(var k= stats.length-10; k < stats.length; k++) {
-                        if(stats[k] === "") {
-                            stats[k] = "0:00";
-                        }
-                    }
 
+                    // for (var k = stats.length - 10; k < stats.length; k++) {
+                    //     if (stats[k] === "") {
+                    //         stats[k] = "0:00";
+                    //     }
+                    // }
+
+
+                    // for(var l=0; l < stats.length; l++) {
+                    //     if(stats[l] === undefined) {
+                    //         stats[l] = 0;
+                    //     }
+                    // }
 
                     for (var i = 0; i < stats.length; i++) {
                         data = {
@@ -442,9 +519,6 @@ app.get('/:name', async (req, res) => {
                         }
                         // console.log(stats[230])
                         res.render("stats", data)
-
-
-
 
                     }
 

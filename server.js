@@ -200,6 +200,11 @@ app.get('/:name', async (req, res) => {
 
 
                     if (data.data.length < 10) {
+
+                        for(var w=0; w < data.data.length; w++) {
+                            stats.push(data.data[w].min);
+                        }
+
                         for (var z = 0; z < length; z++) {
                             stats.push(data.data[z] = "");
                         }

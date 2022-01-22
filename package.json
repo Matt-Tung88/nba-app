@@ -30,7 +30,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "latest-version": "^5.1.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "node-pre-gyp": "^0.15.0",
     "req-flash": "0.0.3"
   },
